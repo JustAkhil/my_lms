@@ -32,7 +32,6 @@ class UserModel extends Equatable {
 }
 
 enum UserRole {
-  student,
-  teacher,
-  admin,
+  Student,
+  Teacher,
 }
