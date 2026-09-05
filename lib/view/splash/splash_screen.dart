@@ -13,12 +13,14 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
+
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
   bool hasNavigated = false;
+
 
   @override
   void initState() {
@@ -141,7 +143,6 @@ class _SplashScreenState extends State<SplashScreen>
     hasNavigated = true;
     final authState = context.read<AuthBloc>().state;
     if (StorageService.isFirstTime()) {
-      StorageService.setFirstTime(value: false);
       Get.offAllNamed(AppRoutes.onBoarding);
     } else if (authState.user != null) {
       Get.offAllNamed(AppRoutes.home);

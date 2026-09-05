@@ -6,6 +6,8 @@ import 'package:my_lms/routes/app_routes.dart';
 import 'package:my_lms/widgets/onboarding_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../service/storage_service.dart';
+
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
 
@@ -16,6 +18,11 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final PageController _pageController = PageController();
   int _currPage = 0;
+
+  void _completeOnBoarding()async{
+    await StorageService.setFirstTime(value: false);
+    Get.offAllNamed(AppRoutes.login);
+  }
 
   List<OnBoardingModel> get _pages => [
     OnBoardingModel(
@@ -78,7 +85,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ElevatedButton(
                   onPressed: () {
                     if (_currPage == _pages.length - 1) {
-                      Get.offAllNamed(AppRoutes.login);
+                      _completeOnBoarding();
                     } else {
                       _pageController.nextPage(
                         duration: const Duration(milliseconds: 300),
