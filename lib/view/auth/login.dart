@@ -24,6 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _passwordController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -97,13 +98,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () => Get.toNamed(AppRoutes.forgotPassword),
                         child: Text(
                           "Forget Password?",
-                          style: TextStyle(color: Theme.of(context).primaryColor),
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                          ),
                         ),
                       ),
                     ),
                     const SizedBox(height: 20),
-                    CustomButton(text: "Login", onPressed: _handleLogin,
-                    ),
+                    CustomButton(text: "Login", onPressed: _handleLogin),
                     SizedBox(height: 40),
                     Row(
                       children: [
@@ -174,9 +176,9 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _handleLogin(){
-    if(_formKey.currentState!.validate()){
-      Get.offAllNamed(AppRoutes.home);
+  void _handleLogin() {
+    if (_formKey.currentState!.validate()) {
+      Get.offAllNamed(AppRoutes.main);
     }
   }
 }

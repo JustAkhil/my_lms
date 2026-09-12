@@ -42,6 +42,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.grey),
               ),
+              SizedBox(height: 20),
+              CustomButton(
+                text: "Back to login",
+                onPressed: () => Get.offAllNamed(AppRoutes.login),
+              ),
             ],
           ),
         ),
@@ -101,10 +106,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               onPressed: _handlePasswordReset,
             ),
             SizedBox(height: 20),
-            CustomButton(
-              text: "Back to login",
-              onPressed: () => Get.offAllNamed(AppRoutes.login),
-            ),
           ],
         ),
       ),
