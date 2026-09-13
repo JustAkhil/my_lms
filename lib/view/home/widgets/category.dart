@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:my_lms/core/theme/app_colors.dart';
 import 'package:my_lms/models/category_model.dart';
 import 'package:my_lms/routes/app_routes.dart';
+import 'package:my_lms/view/NavPage/courses/course_list/course_list_args.dart';
 
 class CategorySection extends StatelessWidget {
   final List<CategoryModel> categories;
@@ -29,7 +30,7 @@ class CategorySection extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: categories.length,
             itemBuilder: (context, index) {
-              return _buildCategoryCard(context,categories[index]);
+              return _buildCategoryCard(context, categories[index]);
             },
           ),
         ),
@@ -57,7 +58,7 @@ class CategorySection extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(16),
-          onTap:()=>_handleCatTap(context, categoryModel),
+          onTap: () => _handleCatTap(context, categoryModel),
           child: Padding(
             padding: EdgeInsets.all(16),
             child: Column(
@@ -78,9 +79,9 @@ class CategorySection extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   "${categoryModel.courseCount} Courses",
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.secondary,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: AppColors.secondary),
                 ),
               ],
             ),
@@ -91,6 +92,13 @@ class CategorySection extends StatelessWidget {
   }
 
   void _handleCatTap(BuildContext context, CategoryModel categoryModel) {
-    Get.toNamed(AppRoutes.courseList);
+    Get.toNamed(
+      AppRoutes.courseList,
+      arguments: CourseListArguments(
+        categoryId: categoryModel.id,
+        categoryName: categoryModel.name,
+        showBackButton: true,
+      ),
+    );
   }
 }

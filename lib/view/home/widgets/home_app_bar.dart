@@ -10,7 +10,7 @@ class HomeAppBar extends StatelessWidget {
     return SliverAppBar(
       expandedHeight: 180,
       floating: true,
-      pinned: false,
+      pinned: true,
       backgroundColor: AppColors.primary,
       actions: [
         IconButton(

@@ -7,6 +7,7 @@ import 'package:my_lms/view/home/home_screen.dart';
 import 'package:my_lms/view/on_boarding/onboarding_screen.dart';
 import 'package:my_lms/view/splash/splash_screen.dart';
 
+import '../view/NavPage/courses/course_list/course_list_args.dart';
 import '../view/NavPage/courses/course_list/course_list_screen.dart';
 import '../view/NavPage/profile/profile_screen.dart';
 import '../view/NavPage/quiz/quiz_list/quiz_list_screen.dart';
@@ -57,7 +58,12 @@ class AppRoutes {
       case teacherHome:
         return MaterialPageRoute(builder: (_) => TeacherHomeScreen());
       case courseList:
-        return MaterialPageRoute(builder: (_) => CourseListScreen());
+        final args = settings.arguments as CourseListArguments?;
+        return MaterialPageRoute(builder: (_) => CourseListScreen(
+          categoryId: args?.categoryId,
+          categoryName: args?.categoryName,
+          showBackButton: args?.showBackButton?? false,
+        ));
       case quizList:
         return MaterialPageRoute(builder: (_) => QuizListScreen());
       case profile:

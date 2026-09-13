@@ -29,7 +29,8 @@ class MainScreen extends StatelessWidget {
               index: state.currIndex,
               children: [
                 HomeScreen(),
-                const CourseListScreen(),
+                CourseListScreen(
+                ),
                 const QuizListScreen(),
                 const ProfileScreen(),
               ],
