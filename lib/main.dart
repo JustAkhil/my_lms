@@ -11,7 +11,7 @@ import 'package:my_lms/service/storage_service.dart';
 
 import 'bloc/auth/auth_bloc.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await StorageService.init();
   runApp(MyApp());

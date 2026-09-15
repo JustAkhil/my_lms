@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:my_lms/routes/app_routes.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -45,7 +47,7 @@ class RecommendedCourseCard extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(16),
-          onTap: () {},
+          onTap: () => Get.toNamed(AppRoutes.courseDetail, arguments: courseId),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

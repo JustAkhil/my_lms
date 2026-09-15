@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_lms/main_page/main_screen.dart';
+import 'package:my_lms/view/NavPage/courses/courses_detail/courses_detail_screen.dart';
 import 'package:my_lms/view/auth/forgot_password_screen.dart';
 import 'package:my_lms/view/auth/login.dart';
 import 'package:my_lms/view/auth/signup.dart';
@@ -27,8 +28,9 @@ class AppRoutes {
 
   //course route
   static const String courseList = "/courseList";
+  static const String courseDetail = "/courseDetail";
 
-  //course route
+  //quiz route
   static const String quizList = "/quizList";
 
   //profile route
@@ -57,13 +59,27 @@ class AppRoutes {
         );
       case teacherHome:
         return MaterialPageRoute(builder: (_) => TeacherHomeScreen());
+      case courseDetail:
+        final courseId = settings.arguments as String?;
+        if (courseId != null) {
+          return MaterialPageRoute(
+            builder: (_) => CoursesDetailScreen(courseId: courseId),
+          );
+        } else {
+          return MaterialPageRoute(
+            builder: (_) =>
+                const Scaffold(body: Center(child: Text("Course not found"))),
+          );
+        }
       case courseList:
         final args = settings.arguments as CourseListArguments?;
-        return MaterialPageRoute(builder: (_) => CourseListScreen(
-          categoryId: args?.categoryId,
-          categoryName: args?.categoryName,
-          showBackButton: args?.showBackButton?? false,
-        ));
+        return MaterialPageRoute(
+          builder: (_) => CourseListScreen(
+            categoryId: args?.categoryId,
+            categoryName: args?.categoryName,
+            showBackButton: args?.showBackButton ?? false,
+          ),
+        );
       case quizList:
         return MaterialPageRoute(builder: (_) => QuizListScreen());
       case profile:

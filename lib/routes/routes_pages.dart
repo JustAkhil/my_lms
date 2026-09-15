@@ -1,10 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_lms/routes/app_routes.dart';
+import 'package:my_lms/view/NavPage/courses/courses_detail/courses_detail_screen.dart';
 import 'package:my_lms/view/splash/splash_screen.dart';
 
 import '../main_page/main_screen.dart';
 import '../view/NavPage/courses/course_list/course_list_args.dart';
 import '../view/NavPage/courses/course_list/course_list_screen.dart';
+import '../view/NavPage/profile/profile_screen.dart';
 import '../view/NavPage/quiz/quiz_list/quiz_list_screen.dart';
 import '../view/auth/forgot_password_screen.dart';
 import '../view/auth/login.dart';
@@ -29,14 +32,28 @@ class AppPages {
       page: () => MainScreen(initialIndex: Get.arguments as int?),
     ),
     GetPage(name: AppRoutes.teacherHome, page: () => const TeacherHomeScreen()),
-    GetPage(name: AppRoutes.courseList, page: (){
-      final args = Get.arguments as CourseListArguments?;
-      return CourseListScreen(
-        categoryId: args?.categoryId,
-        categoryName: args?.categoryName,
-        showBackButton: args?.showBackButton??false,
-      );
-    }),
+    GetPage(
+      name: AppRoutes.courseList,
+      page: () {
+        final args = Get.arguments as CourseListArguments?;
+        return CourseListScreen(
+          categoryId: args?.categoryId,
+          categoryName: args?.categoryName,
+          showBackButton: args?.showBackButton ?? false,
+        );
+      },
+    ),
     GetPage(name: AppRoutes.quizList, page: () => const QuizListScreen()),
+    GetPage(
+      name: AppRoutes.courseDetail,
+      page: () {
+        final courseId = Get.arguments as String?;
+        if (courseId != null) {
+          return CoursesDetailScreen(courseId: courseId);
+        } else {
+          return const Scaffold(body: Center(child: Text("Course not found")));
+        }
+      },
+    ),
   ];
 }
